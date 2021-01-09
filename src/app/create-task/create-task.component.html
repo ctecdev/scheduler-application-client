@@ -1,0 +1,76 @@
+<div class="col-md-6 offset-md-3">
+    <h3> Create Task </h3>
+    <br>
+    <form name="form" #f="ngForm" (ngSubmit) = "f.form.valid && onSubmit()" novalidate>
+
+        <!-- Name -->
+        <div class="form-group">
+            <label> Name </label>
+            <input type="text" class="form-control " placeholder="eg: Task1"
+                id="name" 
+                name="name"
+                [(ngModel)] = "task.name"
+                #name="ngModel"
+                (ngModelChange)="nameChanged($event)"
+                [ngClass]="{ 'is-invalid':(f.submitted && name.invalid) || (name.touched && name.invalid), 'is-valid': name.touched && name.valid}"
+                required>
+            <!-- input validation group -->
+            <div *ngIf="(f.submitted && name.invalid) || (name.touched && name.invalid)" class="invalid-input">
+                <!-- individual validation errors -->
+                <div *ngIf="name.errors?.required">Name must not be empty or blank</div>
+                <div *ngIf="name.errors?.conflict">Name already exists</div>
+                <div *ngIf="name.errors?.chars">Name must not contain special characters</div>
+                <div *ngIf="name.errors?.size">Name size must be in range from 4 to 250 chars</div>
+            </div>
+        </div>
+
+        <!-- Reccurency -->
+        <div class="form-group">
+            <label> Reccurency </label>
+            <input type="text" class="form-control" placeholder="eg: 0/1 * * * * *" 
+                id="reccurency" 
+                name="reccurency" 
+                [(ngModel)] = "task.recurrency"
+                #reccurency="ngModel"
+                (ngModelChange)="reccurencyChanged($event)"
+                [ngClass]="{ 'is-invalid':(f.submitted && reccurency.invalid) || (reccurency.touched && reccurency.invalid), 'is-valid': reccurency.touched && reccurency.valid}"
+                required>
+            <!-- input validation group -->
+            <div *ngIf="(f.submitted && reccurency.invalid) || (reccurency.touched && reccurency.invalid)" class="invalid-input">
+                <!-- individual validation errors -->
+                <div *ngIf="reccurency.errors?.required">Reccurency must not be empty or blank</div>
+                <div *ngIf="reccurency.errors?.size">Reccurency size must be in range from 10 to 30 chars</div>
+                <div *ngIf="reccurency.errors?.invalid">Reccurency is invalid. Please enter valid cron expression.</div>
+            </div>
+        </div>
+        
+        <!-- Code -->
+        <div class="form-group">
+            <label> Code </label>
+            <textarea class="form-control" placeholder="eg: println &quot;Hello&quot;;"
+                id="code" 
+                name="code" 
+                rows="8"
+                [(ngModel)] = "task.code" 
+                #code="ngModel"
+                (ngModelChange)="codeChanged($event)"
+                [ngClass]="{ 'is-valid': code.touched && code.valid}"
+                [ngClass]="{ 'is-invalid':(f.submitted && code.invalid) || (code.touched && code.invalid), 'is-valid': code.touched && code.valid}"
+                required></textarea>
+                <!-- input validation group -->
+            <div *ngIf="(f.submitted && code.invalid) || (code.touched && code.invalid)" class="invalid-input">
+                <!-- individual validation errors -->
+                <div *ngIf="code.errors?.required">Code must not be empty or blank</div>
+                <div *ngIf="code.errors?.size">Code size must be in range from 10 to 1000 chars</div>
+                <div *ngIf="code.errors?.invalid">Code is invalid. Please enter valid groovy script.</div>
+            </div>
+        </div>
+
+        <br>
+        
+        <button class="btn btn-cancel" type="button" (click)="cancel($event)"> Cancel </button>
+
+        <button class="btn btn-success" type="submit" style="float: right;"> Submit </button>
+
+    </form>
+</div>

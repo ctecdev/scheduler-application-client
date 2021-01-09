@@ -1,0 +1,25 @@
+<h1 class="title text-center"> {{title}} </h1>
+
+<nav class="navbar navbar-expand-sm bg-primary navbar-dark">
+  <ul class="navbar-nav">
+    <li class="navbar-item">
+      <a routerLink="tasks" routerLinkActive="active" class="nav-link"> Task List</a>
+    </li>
+    <li class="navbar-item">
+      <a routerLink="create-task" routerLinkActive="active" class="nav-link"> Add Task</a>
+    </li>
+  </ul>
+</nav>
+<br>
+
+<div class="container">
+  <router-outlet></router-outlet>
+</div>
+
+<footer class="footer">
+  <div class="container" style="margin-top: 4px;">
+    <span>
+      SAP Interview Test - Srđan Jazić 2021
+    </span>
+  </div>
+</footer>

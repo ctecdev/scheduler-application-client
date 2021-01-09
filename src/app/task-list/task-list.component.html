@@ -1,0 +1,23 @@
+<h2> Task List </h2>
+<br>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th> Name </th>
+            <th> Reccurency </th>
+            <th> Code </th>
+            <th> Actions </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor = "let task of tasks" >
+            <td> {{task.name}} </td>
+            <td> {{task.recurrency}} </td>
+            <td> {{task.code}} </td>
+            <td> 
+                <button (click) = "updateTask(task.id)" class="btn btn-info"> Update </button>
+                <button (click) = "deleteTask(task.id)" class="btn btn-danger" style="margin-left: 10px;"> Delete </button>
+            </td>
+        </tr>
+    </tbody>
+</table>
