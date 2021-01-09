@@ -29,5 +29,5 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 ## Preview
 
-![Preview](img/Screenshot from 2021-01-05 13-35-51.png)
+![scheduler-app-preview](img/scheduler-app-preview.jpg)
 
